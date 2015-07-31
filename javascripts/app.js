@@ -20,6 +20,8 @@ var main = function(){
 		var inp = $("textarea").val();  //Get the value of string in text area.
 		//inp = inp.replace(/\s/g, '');  //Remove all whitespace from string. Reference: http://stackoverflow.com/questions/6623231/remove-all-white-spaces-from-text
 
+		inp = inp.replace(/[^0-9\.\,]+/g, '');  //Remove all non-numeric characters except for points and commas. Reference: http://stackoverflow.com/questions/26202837/remove-non-numeric-characters-except-dash
+
 		var numbers = inp.split(/[ ,]+/);  //Retrieve each number entered and put them into an array. Reference: http://stackoverflow.com/questions/10346722/how-can-i-split-a-javascript-string-by-white-space-or-comma
 		var length = numbers.length;  //Get how many numbers the user inputted.
 
@@ -27,6 +29,8 @@ var main = function(){
 			//Translate the string input into number input.
 			numbers[i] = parseFloat(numbers[i]);
 		}
+
+		console.log(numbers);
 	});
 };
 
