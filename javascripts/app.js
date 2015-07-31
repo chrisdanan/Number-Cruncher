@@ -1,3 +1,15 @@
+var add = function(numbers){
+	"use strict";
+
+	var sum = 0;  //Holds the sum of the numbers.
+
+	numbers.forEach(function(number){
+		sum = sum + number;
+	});
+
+	return sum;
+};
+
 var main = function(){
 	"use strict";
 
@@ -9,11 +21,12 @@ var main = function(){
 		//inp = inp.replace(/\s/g, '');  //Remove all whitespace from string. Reference: http://stackoverflow.com/questions/6623231/remove-all-white-spaces-from-text
 
 		var numbers = inp.split(/[ ,]+/);  //Retrieve each number entered and put them into an array. Reference: http://stackoverflow.com/questions/10346722/how-can-i-split-a-javascript-string-by-white-space-or-comma
+		var length = numbers.length;  //Get how many numbers the user inputted.
 
-		numbers.forEach(function(number){
-			console.log(number);
-			console.log(Math.trunc(number));
-		});
+		for(var i = 0; i < length; i++){
+			//Translate the string input into number input.
+			numbers[i] = parseFloat(numbers[i]);
+		}
 	});
 };
 
