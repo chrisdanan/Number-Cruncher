@@ -28,9 +28,15 @@ var main = function(){
 		for(var i = 0; i < length; i++){
 			//Translate the string input into number input.
 			numbers[i] = parseFloat(numbers[i]);
+
+			//Go through numbers one more time and remove any NaNs.
+			if(isNaN(numbers[i])){
+				numbers.splice(i, 1); 
+			}
 		}
 
 		console.log(numbers);
+		console.log(add(numbers));
 	});
 };
 
