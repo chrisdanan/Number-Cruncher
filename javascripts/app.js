@@ -30,13 +30,30 @@ var add = function(numbers){
 };
 
 var average = function(numbers, length){
+	"use strict";
+
 	var sum = add(numbers);
 
 	return sum/length;
 };
 
-var median = function(numbers){
+var median = function(numbers, length){
+	"use strict";
 
+	if(length % 2 === 0){  //Even number of numbers in array.
+		console.log("Even number of numbers in the array.");
+		var rightMid = length / 2,  //Right-middle number.
+			leftMid = rightMid - 1;  //Left-middle number.
+
+		return average([numbers[leftMid], numbers[rightMid]], 2);
+
+	} else{  //Odd number of numbers in array.
+		console.log("Odd number of numbers in the array.");
+		var mid = Math.floor(length / 2);  //Middle of the array.
+		return numbers[mid];
+	}
+
+	return null;  //Should not be able to go to this state.
 };
 
 var mode = function(numbers){
@@ -72,8 +89,9 @@ var main = function(){
 
 		bubbleSort(numbers, length);
 		console.log(numbers);
-		console.log(add(numbers));
-		console.log(average(numbers, length));
+		console.log("Sum: " + add(numbers));
+		console.log("Avg: " + average(numbers, length));
+		console.log("Median: " + median(numbers, length));
 	});
 };
 
