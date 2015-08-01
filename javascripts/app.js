@@ -1,3 +1,22 @@
+//Reference: http://www.stoimen.com/blog/2010/07/09/friday-algorithms-javascript-bubble-sort/
+var bubbleSort = function(numbers, length){
+	var swapped;  //Ends loop if false.
+
+	do{
+		swapped = false;
+
+		for(var i = 0; i <= (length - 2); i++){
+			if(numbers[i] > numbers[i+1]){
+				var temp = numbers[i];
+				numbers[i] = numbers[i+1];
+				numbers[i+1] = temp;
+				swapped = true;
+				console.log("loop");
+			}
+		}
+	}while(swapped);
+};
+
 var add = function(numbers){
 	"use strict";
 
@@ -50,7 +69,8 @@ var main = function(){
 		}
 
 		length = numbers.length;  //Need to recalculate length in case NaNs are stripped.
-		
+
+		bubbleSort(numbers, length);
 		console.log(numbers);
 		console.log(add(numbers));
 		console.log(average(numbers, length));
