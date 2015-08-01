@@ -10,6 +10,20 @@ var add = function(numbers){
 	return sum;
 };
 
+var average = function(numbers, length){
+	var sum = add(numbers);
+
+	return sum/length;
+};
+
+var median = function(numbers){
+
+};
+
+var mode = function(numbers){
+
+};
+
 var main = function(){
 	"use strict";
 
@@ -35,8 +49,11 @@ var main = function(){
 			}
 		}
 
+		length = numbers.length;  //Need to recalculate length in case NaNs are stripped.
+		
 		console.log(numbers);
 		console.log(add(numbers));
+		console.log(average(numbers, length));
 	});
 };
 
