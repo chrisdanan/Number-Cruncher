@@ -212,6 +212,8 @@ var main = function(){
 
 	//Press the calculate button.
 	$("#submitBtn").on("click", function(){
+		$("#output-field").empty();  //Empty previous outputs.
+		
 		var inp = $("textarea").val();  //Get the value of string in text area.
 		//inp = inp.replace(/\s/g, '');  //Remove all whitespace from string. Reference: http://stackoverflow.com/questions/6623231/remove-all-white-spaces-from-text
 
@@ -232,16 +234,22 @@ var main = function(){
 
 		length = numbers.length;  //Need to recalculate length in case NaNs are stripped.
 
-		bubbleSort(numbers, length);
+		//Only use resources when there are 2 or more numbers to input.
+		if(length > 1){
+			bubbleSort(numbers, length);
 
-		sum = summation(numbers);
-		avg = average(numbers, length);
-		med = median(numbers, length);
-		varMode = mode(numbers, length);
-		popVariance = variance(avg, numbers, length);
-		sampleVariance = variance(avg, numbers, length - 1);
-		popSD = standardDeviation(popVariance);
-		sampleSD = standardDeviation(sampleVariance);
+			sum = summation(numbers);
+			avg = average(numbers, length);
+			med = median(numbers, length);
+			varMode = mode(numbers, length);
+			popVariance = variance(avg, numbers, length);
+			sampleVariance = variance(avg, numbers, length - 1);
+			popSD = standardDeviation(popVariance);
+			sampleSD = standardDeviation(sampleVariance);
+		} else{
+			var $emptyMsg = $("<p>").attr("id", "emptyMsg").text("Please input at least 2 numbers.");
+			$("#output-field").append($emptyMsg);
+		}
 
 		console.log("Numbers entered: " + numbers);
 		console.log("How many numbers entered: " + length);
