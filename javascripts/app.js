@@ -100,7 +100,7 @@ var median = function(numbers, length){
  			-numbers: the array that is passed in.
  			-length: the size of the array.
  * Output:
- 			Return the mode to the caller.
+ 			Return the object holding number of occurrences to the caller.
 *************/
 var numOccurrences = function(numbers, length){
 	var currentNum,  //The current number in the array.
@@ -117,19 +117,23 @@ var numOccurrences = function(numbers, length){
 		}
 	}
 
-	return mode(counts);
+	return counts;
 };
 
 /**************
- * Purpose: Find the mode of the numbers.
+ * Purpose: Find the mode of the numbers by finding the number(s) with the highest number of occurrences.
  * Input:
- 			-counts: the data object that holds the number of occurrences of each number.
+ 			-numbers: the array that is passed in.
+ 			-length: the size of the array.
  * Output:
  			Return the mode to the caller.
 *************/
-var mode = function(counts){
+var mode = function(numbers, length){
 	var max = 2,  //Mode has to appear 2 or more times.
-		mode = [];  //Can be more than 2 modes, so put them in array.
+		mode = [],  //Can be more than 2 modes, so put them in array.
+		counts = {};  //Object that holds the number of occurrences for each number.
+
+	counts = numOccurrences(numbers, length);  //Get the number of occurrences of each number.
 
 	//Go through each key-value pair in counts.
 	for(var num in counts){
@@ -145,6 +149,7 @@ var mode = function(counts){
 		}
 	}
 
+	//If there is no array, then mode does not exist.
 	if(mode.length === 0){
 		mode = "None";
 	}
@@ -195,6 +200,7 @@ var main = function(){
 
 	console.log("Hello Vane");
 
+	//Note: need to give variable names that are different from function names, otherwise there'll be errors.
 	var sum,
 		avg,
 		med,
@@ -230,8 +236,8 @@ var main = function(){
 
 		sum = summation(numbers);
 		avg = average(numbers, length);
-		median = median(numbers, length);
-		mode = numOccurrences(numbers, length);
+		med = median(numbers, length);
+		varMode = mode(numbers, length);
 		popVariance = variance(avg, numbers, length);
 		sampleVariance = variance(avg, numbers, length - 1);
 		popSD = standardDeviation(popVariance);
@@ -241,8 +247,8 @@ var main = function(){
 		console.log("How many numbers entered: " + length);
 		console.log("Sum: " + sum);
 		console.log("Avg: " + avg);
-		console.log("Median: " + median);
-		console.log("Mode: " + mode);
+		console.log("Median: " + med);
+		console.log("Mode: " + varMode);
 		console.log("Population Variance: " + popVariance);
 		console.log("Sample Variance: " + sampleVariance);
 		console.log("Population Standard Deviation: " + popSD);
@@ -251,3 +257,6 @@ var main = function(){
 };
 
 $(document).ready(main);
+
+//t
+//fflvd
