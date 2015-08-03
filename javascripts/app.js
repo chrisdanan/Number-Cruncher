@@ -157,6 +157,19 @@ var mode = function(numbers, length){
 	return mode;
 };
 
+//Reference: https://www.purplemath.com/modules/meanmode.htm
+/*************
+ * Purpose: Find the range of the numbers.
+ * Input:
+ 			-smallest: the smallest number from the inputs.
+ 			-largest: the largest number from the inputs.
+ * Output:
+ 			Return the range to the caller.
+*************/
+var range = function(smallest, largest){
+	return largest - smallest;
+};
+
 //Reference: http://www.mathsisfun.com/data/standard-deviation.html
 /**************
  * Purpose: Find the variance of the numbers. This function can calculate the sample and population vairance since
@@ -201,19 +214,20 @@ var main = function(){
 	console.log("Hello Vane");
 
 	//Note: need to give variable names that are different from function names, otherwise there'll be errors.
-	var sum,
-		avg,
-		med,
+	var varSum,
+		varAvg,
+		varMed,
 		varMode,
+		varRange,
 		popVariance,
-		sampleVariance,
+		sampVariance,
 		popSD,
-		sampleSD;
+		sampSD;
 
 	//Press the calculate button.
 	$("#submitBtn").on("click", function(){
 		$("#output-field").empty();  //Empty previous outputs.
-		
+
 		var inp = $("textarea").val();  //Get the value of string in text area.
 		//inp = inp.replace(/\s/g, '');  //Remove all whitespace from string. Reference: http://stackoverflow.com/questions/6623231/remove-all-white-spaces-from-text
 
@@ -238,14 +252,15 @@ var main = function(){
 		if(length > 1){
 			bubbleSort(numbers, length);
 
-			sum = summation(numbers);
-			avg = average(numbers, length);
-			med = median(numbers, length);
+			varSum = summation(numbers);
+			varAvg = average(numbers, length);
+			varMed = median(numbers, length);
 			varMode = mode(numbers, length);
-			popVariance = variance(avg, numbers, length);
-			sampleVariance = variance(avg, numbers, length - 1);
+			varRange = range(numbers[0], numbers[length -1]);
+			popVariance = variance(varAvg, numbers, length);
+			sampVariance = variance(varAvg, numbers, length - 1);
 			popSD = standardDeviation(popVariance);
-			sampleSD = standardDeviation(sampleVariance);
+			sampSD = standardDeviation(sampVariance);
 		} else{
 			var $emptyMsg = $("<p>").attr("id", "emptyMsg").text("Please input at least 2 numbers.");
 			$("#output-field").append($emptyMsg);
@@ -253,14 +268,15 @@ var main = function(){
 
 		console.log("Numbers entered: " + numbers);
 		console.log("How many numbers entered: " + length);
-		console.log("Sum: " + sum);
-		console.log("Avg: " + avg);
-		console.log("Median: " + med);
+		console.log("Sum: " + varSum);
+		console.log("Avg: " + varAvg);
+		console.log("Median: " + varMed);
 		console.log("Mode: " + varMode);
+		console.log("Range: " + varRange);
 		console.log("Population Variance: " + popVariance);
-		console.log("Sample Variance: " + sampleVariance);
+		console.log("Sample Variance: " + sampVariance);
 		console.log("Population Standard Deviation: " + popSD);
-		console.log("Sample Standard Deviation: " + sampleSD);
+		console.log("Sample Standard Deviation: " + sampSD);
 	});
 };
 
