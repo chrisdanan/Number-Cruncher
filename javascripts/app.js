@@ -17,7 +17,7 @@ var bubbleSort = function(numbers, length){
 	}while(swapped);
 };
 
-var add = function(numbers){
+var summation = function(numbers){
 	"use strict";
 
 	var sum = 0;  //Holds the sum of the numbers.
@@ -32,7 +32,7 @@ var add = function(numbers){
 var average = function(numbers, length){
 	"use strict";
 
-	var sum = add(numbers);
+	var sum = summation(numbers);
 
 	return sum/length;
 };
@@ -97,10 +97,37 @@ var mode = function(counts){
 	return mode;
 };
 
+var variance = function(avg, numbers, length){
+	var diffOfSquares = 0;
+
+	numbers.forEach(function(number){
+		var temp = number - avg;
+		temp = Math.pow(temp, 2);
+		diffOfSquares += temp;
+	});
+
+	console.log(diffOfSquares / length);
+
+	return diffOfSquares / length;
+};
+
+var standardDeviation = function(vari){
+	return Math.sqrt(vari);
+};
+
 var main = function(){
 	"use strict";
 
 	console.log("Hello Vane");
+
+	var sum,
+		avg,
+		med,
+		varMode,
+		popVariance,
+		sampleVariance,
+		popSD,
+		sampleSD;
 
 	//Press the submit button.
 	$("#submitBtn").on("click", function(){
@@ -125,11 +152,25 @@ var main = function(){
 		length = numbers.length;  //Need to recalculate length in case NaNs are stripped.
 
 		bubbleSort(numbers, length);
+
+		sum = summation(numbers);
+		avg = average(numbers, length);
+		median = median(numbers, length);
+		mode = numOccurrences(numbers, length);
+		popVariance = variance(avg, numbers, length);
+		sampleVariance = variance(avg, numbers, length - 1);
+		popSD = standardDeviation(popVariance);
+		sampleSD = standardDeviation(sampleVariance);
+
 		console.log(numbers);
-		console.log("Sum: " + add(numbers));
-		console.log("Avg: " + average(numbers, length));
-		console.log("Median: " + median(numbers, length));
-		console.log("Mode: " + numOccurrences(numbers, length));
+		console.log("Sum: " + sum);
+		console.log("Avg: " + avg);
+		console.log("Median: " + median);
+		console.log("Mode: " + mode);
+		console.log("Population Variance: " + popVariance);
+		console.log("Sample Variance: " + sampleVariance);
+		console.log("Population Standard Deviation: " + popSD);
+		console.log("Sample Standard Deviation: " + sampleSD);
 	});
 };
 
