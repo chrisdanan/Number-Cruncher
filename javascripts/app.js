@@ -1,4 +1,22 @@
+/*************
+ * Author: Christopher Dancarlo Danan
+ * Created: July 2015
+ * For: NumberCruncher project.
+ * Name: app.js
+ * Purpose: Handles the scripting for the project. The project is a calculator where the user
+ 			can input numbers (either separated by a comma or space), and the page will output
+ 			mathematical calculations and statistics (e.g. sum, average, standard deviation).
+*************/
+
 //Reference: http://www.stoimen.com/blog/2010/07/09/friday-algorithms-javascript-bubble-sort/
+/*************
+ * Purpose:	Sort the given array, from least to greatest.
+ * Input:	
+ 			-numbers: the array that is passed in.
+ 			-length: the size of the array.
+ * Output:
+ 			The array will be sorted, from least to greatest.
+*************/
 var bubbleSort = function(numbers, length){
 	var swapped;  //Ends loop if false.
 
@@ -11,12 +29,18 @@ var bubbleSort = function(numbers, length){
 				numbers[i] = numbers[i+1];
 				numbers[i+1] = temp;
 				swapped = true;
-				console.log("loop");
 			}
 		}
 	}while(swapped);
 };
 
+/**************
+ * Purpose: Add the numbers to calculate the sum.
+ * Input:
+ 			-numbers: the array that is passed in.
+ * Output:
+ 			Return the sum to the caller.
+*************/
 var summation = function(numbers){
 	"use strict";
 
@@ -29,6 +53,14 @@ var summation = function(numbers){
 	return sum;
 };
 
+/**************
+ * Purpose: Find the average of the numbers.
+ * Input:
+ 			-numbers: the array that is passed in.
+ 			-length: the size of the array.
+ * Output:
+ 			Return the average to the caller.
+*************/
 var average = function(numbers, length){
 	"use strict";
 
@@ -37,6 +69,14 @@ var average = function(numbers, length){
 	return sum/length;
 };
 
+/**************
+ * Purpose: Find the median of the numbers.
+ * Input:
+ 			-numbers: the array that is passed in.
+ 			-length: the size of the array.
+ * Output:
+ 			Return the median to the caller.
+*************/
 var median = function(numbers, length){
 	"use strict";
 
@@ -54,6 +94,14 @@ var median = function(numbers, length){
 	return null;  //Should not be able to go to this state.
 };
 
+/**************
+ * Purpose: Find the number of times each number appears in the array and store the data into an object.
+ * Input:
+ 			-numbers: the array that is passed in.
+ 			-length: the size of the array.
+ * Output:
+ 			Return the mode to the caller.
+*************/
 var numOccurrences = function(numbers, length){
 	var currentNum,  //The current number in the array.
 		counts = {};  //The JSON object that holds the number of occurrences of each number.
@@ -72,6 +120,13 @@ var numOccurrences = function(numbers, length){
 	return mode(counts);
 };
 
+/**************
+ * Purpose: Find the mode of the numbers.
+ * Input:
+ 			-counts: the data object that holds the number of occurrences of each number.
+ * Output:
+ 			Return the mode to the caller.
+*************/
 var mode = function(counts){
 	var max = 2,  //Mode has to appear 2 or more times.
 		mode = [];  //Can be more than 2 modes, so put them in array.
@@ -97,20 +152,40 @@ var mode = function(counts){
 	return mode;
 };
 
+//Reference: http://www.mathsisfun.com/data/standard-deviation.html
+/**************
+ * Purpose: Find the variance of the numbers. This function can calculate the sample and population vairance since
+ 			the length is also passed in as a parameter (population variance uses the full length while sample
+ 			variance uses length-1).
+ * Input:
+ 			-avg: the average of the numbers
+ 			-numbers: the array that is passed in.
+ 			-length: the size of the array.
+ * Output:
+ 			Return the variance to the caller.
+*************/
 var variance = function(avg, numbers, length){
-	var diffOfSquares = 0;
+	var diffOfSquares = 0;  //Holds the difference of squares.
 
+	//Calculate the difference of squares.
 	numbers.forEach(function(number){
 		var temp = number - avg;
 		temp = Math.pow(temp, 2);
 		diffOfSquares += temp;
 	});
 
-	console.log(diffOfSquares / length);
-
 	return diffOfSquares / length;
 };
 
+//Reference: http://www.mathsisfun.com/data/standard-deviation.html
+/**************
+ * Purpose: Find the standard deviation of the numbers. Population and sample standard deviantion is found depending
+ 			on the type of variance that is sent in as a parameter.
+ * Input:
+ 			-vari: the variance used to calculate the standard deviation.
+ * Output:
+ 			Return the standard deviation to the caller.
+*************/
 var standardDeviation = function(vari){
 	return Math.sqrt(vari);
 };
@@ -129,12 +204,12 @@ var main = function(){
 		popSD,
 		sampleSD;
 
-	//Press the submit button.
+	//Press the calculate button.
 	$("#submitBtn").on("click", function(){
 		var inp = $("textarea").val();  //Get the value of string in text area.
 		//inp = inp.replace(/\s/g, '');  //Remove all whitespace from string. Reference: http://stackoverflow.com/questions/6623231/remove-all-white-spaces-from-text
 
-		inp = inp.replace(/[^0-9\.\,\ ]+/g, '');  //Remove all non-numeric characters except for points and commas. Reference: http://stackoverflow.com/questions/26202837/remove-non-numeric-characters-except-dash
+		inp = inp.replace(/[^0-9\.\,\ ]+/g, '');  //Remove all non-numeric characters except for points, commas, and whitespace. Reference: http://stackoverflow.com/questions/26202837/remove-non-numeric-characters-except-dash
 
 		var numbers = inp.split(/[ ,]+/);  //Retrieve each number entered and put them into an array. Reference: http://stackoverflow.com/questions/10346722/how-can-i-split-a-javascript-string-by-white-space-or-comma
 		var length = numbers.length;  //Get how many numbers the user inputted.
@@ -162,7 +237,8 @@ var main = function(){
 		popSD = standardDeviation(popVariance);
 		sampleSD = standardDeviation(sampleVariance);
 
-		console.log(numbers);
+		console.log("Numbers entered: " + numbers);
+		console.log("How many numbers entered: " + length);
 		console.log("Sum: " + sum);
 		console.log("Avg: " + avg);
 		console.log("Median: " + median);
