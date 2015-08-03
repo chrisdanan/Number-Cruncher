@@ -261,6 +261,32 @@ var main = function(){
 			sampVariance = variance(varAvg, numbers, length - 1);
 			popSD = standardDeviation(popVariance);
 			sampSD = standardDeviation(sampVariance);
+
+			//Put information into DOM paragraphs.
+			var $numInfo = $("<p>").attr("id", "numInfo").addClass("output-info").text("Numbers entered (in order): " + numbers.join(", ")),  //Reference for formatting object output: http://stackoverflow.com/questions/12835621/removing-commas-from-javascript-array
+				$lenInfo = $("<p>").attr("id", "lenInfo").addClass("output-info").text("Amount of numbers entered: " + length),
+				$sumInfo = $("<p>").attr("id", "sumInfo").addClass("output-info").text("Sum: " + varSum),
+				$avgInfo = $("<p>").attr("id", "avgInfo").addClass("output-info").text("Average: " + varAvg),
+				$medInfo = $("<p>").attr("id", "medInfo").addClass("output-info").text("Median: " + varMed),
+				$modeInfo = $("<p>").attr("id", "modeInfo").addClass("output-info").text("Mode: " + varMode),
+				$rangeInfo = $("<p>").attr("id", "rangeInfo").addClass("output-info").text("Range: " + varRange),
+				$popVarInfo = $("<p>").attr("id", "popVarInfo").addClass("output-info").text("Population Variance: " + popVariance),
+				$sampVarInfo = $("<p>").attr("id", "sampVarInfo").addClass("output-info").text("Sample Variance: " + sampVariance),
+				$popSDInfo = $("<p>").attr("id", "popSDInfo").addClass("output-info").text("Population Standard Deviation: " + popSD),
+				$sampSDInfo = $("<p>").attr("id", "sampSDInfo").addClass("output-info").text("Sample Standard Deviation: " + sampSD);
+
+			//Append the information in the output area.
+			$("#output-field").append($numInfo);
+			$("#output-field").append($lenInfo);
+			$("#output-field").append($sumInfo);
+			$("#output-field").append($avgInfo);
+			$("#output-field").append($medInfo);
+			$("#output-field").append($modeInfo);
+			$("#output-field").append($rangeInfo);
+			$("#output-field").append($popVarInfo);
+			$("#output-field").append($sampVarInfo);
+			$("#output-field").append($popSDInfo);
+			$("#output-field").append($sampSDInfo);
 		} else{
 			var $emptyMsg = $("<p>").attr("id", "emptyMsg").text("Please input at least 2 numbers.");
 			$("#output-field").append($emptyMsg);
