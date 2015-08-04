@@ -292,6 +292,12 @@ var main = function(){
 			$("#output-field").append($emptyMsg);
 		}
 
+		//Press the clear button.
+		$("#clearBtn").on("click", function(){
+			$("#input-field textarea").val("");
+			$("#output-field").empty();
+		});
+
 		console.log("Numbers entered: " + numbers);
 		console.log("How many numbers entered: " + length);
 		console.log("Sum: " + varSum);
