@@ -5,21 +5,47 @@
 	<meta charset="utf-8" />
 	<meta name="author" content="Christopher Dancarlo Danan
 	" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
 </head>
 <body>
-	<div id="info">
-		<h1>Number Cruncher</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque elementum tortor non nulla dictum, at accumsan eros scelerisque. Maecenas at.</p>
-	</div>
-	<div id="calc-area">
-		<h2>Input</h2>
-		<div id="input-field">
-			<textarea autocomplete="off" cols="50" rows="10" placeholder="Enter numbers here (e.g. 1, 2, 3.3, -4)"></textarea>
-			<button id="submitBtn">Calculate</button>
+	<div class="container">
+		<div id="header" class="row">
+			<div class="col-xs-12 col-sm-6">
+				<h1>Number Cruncher</h1>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<h2>by <a href="https://github.com/chrisdanan">Christopher Dancarlo Danan</a></h2>
+			</div>
 		</div>
-		<h2>Output</h2>
-		<div id="output-field">
+		<div id="info" class="row">
+			<div class="col-xs-12">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque elementum tortor non nulla dictum, at accumsan eros scelerisque. Maecenas at.</p>
+			</div>
+		</div>
+		<div id="calc-area" class="row">
+			<div class="col-xs-12 col-sm-6">
+				<h2>Input</h2>
+				<div id="input-field">
+					<textarea autocomplete="off"placeholder="Enter numbers here (e.g. 1, 2, 3.3, -4)"></textarea>
+				</div>
+				<div class="row">
+					<div col="col-xs-12">
+						<button id="submitBtn">Calculate</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<h2>Output</h2>
+				<div id="output-field">
+				</div>
+				<div class="row">
+					<div col="col-xs-12">
+						<button id="clearBtn">Clear</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	

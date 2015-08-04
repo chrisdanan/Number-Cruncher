@@ -1,2 +1,62 @@
 /*Stylesheet for NumberCruncher project*/
-/*Reference for responsive web design: https://developers.google.com/web/fundamentals/getting-started/your-first-multi-screen-site/responsive?hl=en*/
+
+body{
+	max-width: 12000px;
+	font-size: 1.5em;
+}
+
+#header{
+	margin-bottom: 30px;
+	background-color: black;
+	color: white;
+}
+
+textarea{
+	width: 50%;
+	min-width: 300px;
+	min-height: 500px;
+	border: 1px solid black;
+	padding: 10px;
+	resize: none;
+}
+
+#output-field{
+	width: 50%;
+	min-width: 300px;
+	min-height: 500px;
+	border: 1px solid black;
+	padding: 10px;
+}
+
+button{
+	margin-left: 15px;
+}
+
+#clearBtn{
+	margin-top: 5px;
+}
+
+@media (min-width: 768px){
+
+	body{
+		font-size: 1.7em;
+		background-color: lightgray;
+	}
+
+	textarea, #output-field{
+		border-radius: 5px;
+		background-color: white;
+	}
+
+	button{
+		border: none;
+		border-radius: 3px;
+		background-color: black;
+		color: white;
+	}
+
+	button:hover{
+		background-color: white;
+		color: black;
+	}
+}
