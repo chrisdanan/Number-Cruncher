@@ -36,6 +36,10 @@ button{
 	margin-top: 5px;
 }
 
+#instr{
+	font-weight: bold;
+}
+
 @media (min-width: 768px){
 
 	body{
